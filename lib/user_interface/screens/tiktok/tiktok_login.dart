@@ -13,7 +13,7 @@ class TikTokLogin extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          CachedNetworkImage(imageUrl: '/assets/logos/tiktok_logo.png'),
+          Image.asset('assets/logos/tiktok_logo.png'),
           StyledElevatedButton(
               text: 'Login to TikTok', onPressed: () => tiktok.tikTokLogin()),
           RichText(

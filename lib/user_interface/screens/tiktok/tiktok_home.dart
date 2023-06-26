@@ -28,7 +28,8 @@ class _TikTokHomeState extends State<TikTokHome> with GetItStateMixin {
           flex: 1,
           fit: isSmallScreen ? FlexFit.tight : FlexFit.loose,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: $styles.insets.lg),
+            padding: EdgeInsets.symmetric(
+                horizontal: $styles.insets.lg, vertical: $styles.insets.lg),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular($styles.insets.sm),
