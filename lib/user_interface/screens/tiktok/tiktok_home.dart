@@ -19,7 +19,7 @@ class _TikTokHomeState extends State<TikTokHome> with GetItStateMixin {
 
     /// Calculate the height/width of form.
     double formWidth = max(400, context.widthPx * .25);
-    double formHeight = max(650, context.heightPx * .7);
+    double formHeight = max(650, context.heightPx * .5);
     return Flex(
       direction: Axis.horizontal,
       mainAxisAlignment: MainAxisAlignment.center,

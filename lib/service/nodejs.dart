@@ -8,6 +8,8 @@ class NodeJs {
   final _tikTokLoginUrl = 'www.tiktok.com';
   static final csrfState = generateRandomString(10);
   final _headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': 'true',
     'Cookie': csrfState,
     'Content-Type': 'application/x-www-form-urlencoded',
   };
@@ -24,7 +26,7 @@ class NodeJs {
     });
     response = await client.get(url, headers: _headers);
 
-    print(response);
+    print(response.body);
   }
 }
 
