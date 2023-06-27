@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:da_social_media_viewer/constants.dart';
 
@@ -27,6 +28,18 @@ class NodeJs {
     response = await client.get(url, headers: _headers);
 
     print('RESPONSE : ' + response.body);
+  }
+
+  Future<void> instagramLogin() async {
+    final LoginResult result = await FacebookAuth.i.login();
+
+    if (result.status == LoginStatus.success) {
+      final AccessToken? accessToken = result.accessToken;
+      print('Access token is: ${accessToken!.token}');
+    } else {
+      print(result.status);
+      print(result.message);
+    }
   }
 }
 

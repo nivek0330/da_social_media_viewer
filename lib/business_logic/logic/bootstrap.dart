@@ -1,6 +1,7 @@
 import 'package:da_social_media_viewer/business_logic/utils/device_info.dart';
 import 'package:da_social_media_viewer/core_packages.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class Bootstrap {
   bool isBootstrapComplete = false;
@@ -17,6 +18,13 @@ class Bootstrap {
 
   Future<void> init() async {
     setDeviceOrientation(supportedOrientations);
+
+    await FacebookAuth.i.webAndDesktopInitialize(
+      appId: "177839724753412",
+      cookie: true,
+      xfbml: true,
+      version: "v16.0",
+    );
 
     isBootstrapComplete = true;
   }

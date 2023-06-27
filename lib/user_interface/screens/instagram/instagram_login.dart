@@ -2,8 +2,8 @@ import 'package:da_social_media_viewer/core_packages.dart';
 import 'package:flutter/gestures.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class TikTokLogin extends StatelessWidget {
-  const TikTokLogin({super.key});
+class InstagramLogin extends StatelessWidget {
+  const InstagramLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +12,13 @@ class TikTokLogin extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Image.asset('assets/logos/tiktok_logo.png'),
+          Image.asset(
+            'assets/logos/instagram_logo.png',
+            height: 150,
+          ),
           StyledElevatedButton(
-              text: 'Login to TikTok', onPressed: () => tiktok.tikTokLogin()),
+              text: 'Login to Instagram',
+              onPressed: () => instagram.instagramLogin()),
           RichText(
             textAlign: TextAlign.center,
             text: TextSpan(

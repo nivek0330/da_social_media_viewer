@@ -1,6 +1,7 @@
 import 'package:da_social_media_viewer/business_logic/utils/device_info.dart';
 import 'package:da_social_media_viewer/core_packages.dart';
 import 'package:da_social_media_viewer/user_interface/screens/home/home_navi_bar.dart';
+import 'package:da_social_media_viewer/user_interface/screens/instagram/instagram_home.dart';
 import 'package:da_social_media_viewer/user_interface/screens/tiktok/tiktok_home.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Widget> screens = [
     Center(child: Text('Hello World!')),
-    Center(child: Text('Instagram!')),
+    InstagramHome(),
     TikTokHome(),
   ];
 
