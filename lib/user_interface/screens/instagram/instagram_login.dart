@@ -1,6 +1,7 @@
 import 'package:da_social_media_viewer/business_logic/utils/loading_state_mixin.dart';
 import 'package:da_social_media_viewer/core_packages.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class InstagramLogin extends StatefulWidget {
@@ -18,7 +19,7 @@ class _InstagramLoginState extends State<InstagramLogin>
 
   void _handleSubmitPressed() async {
     String result = await instagram.instagramLogin();
-    errorText = result;
+    errorText = FacebookAuth.i.isWebSdkInitialized.toString();
     return;
   }
 
