@@ -18,7 +18,7 @@ class _InstagramLoginState extends State<InstagramLogin>
   set errorText(String errorText) => setState(() => _errorText = errorText);
 
   void _handleSubmitPressed() async {
-    await instagram.instagramLogin();
+    // await instagram.instagramLogin();
     errorText = FacebookAuth.i.isWebSdkInitialized.toString();
     return;
   }
