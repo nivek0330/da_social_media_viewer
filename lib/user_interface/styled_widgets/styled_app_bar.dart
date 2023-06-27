@@ -6,7 +6,6 @@ class StyledAppBar extends StatelessWidget {
 
   const StyledAppBar({super.key, required this.title, required this.isMobile});
 
-  //TODO: Add settings for mobile
   @override
   Widget build(BuildContext context) {
     return SizedBox(

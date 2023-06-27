@@ -20,10 +20,10 @@ class Bootstrap {
     setDeviceOrientation(supportedOrientations);
 
     await FacebookAuth.i.webAndDesktopInitialize(
-      appId: "177839724753412",
+      appId: '177839724753412',
       cookie: true,
       xfbml: true,
-      version: "v16.0",
+      version: 'v16.0',
     );
 
     isBootstrapComplete = true;

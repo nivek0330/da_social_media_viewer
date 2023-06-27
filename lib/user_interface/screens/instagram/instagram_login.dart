@@ -1,9 +1,26 @@
+import 'package:da_social_media_viewer/business_logic/utils/loading_state_mixin.dart';
 import 'package:da_social_media_viewer/core_packages.dart';
 import 'package:flutter/gestures.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class InstagramLogin extends StatelessWidget {
+class InstagramLogin extends StatefulWidget {
   const InstagramLogin({super.key});
+
+  @override
+  State<InstagramLogin> createState() => _InstagramLoginState();
+}
+
+class _InstagramLoginState extends State<InstagramLogin>
+    with LoadingStateMixin {
+  String _errorText = '';
+  String get errorText => _errorText;
+  set errorText(String errorText) => setState(() => _errorText = errorText);
+
+  void _handleSubmitPressed() async {
+    String result = await instagram.instagramLogin();
+    errorText = result;
+    return;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,13 +29,22 @@ class InstagramLogin extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          VSpace.sm,
           Image.asset(
             'assets/logos/instagram_logo.png',
             height: 150,
           ),
-          StyledElevatedButton(
-              text: 'Login to Instagram',
-              onPressed: () => instagram.instagramLogin()),
+          isLoading
+              ? StyledCircularProgressBar()
+              : StyledElevatedButton(
+                  text: 'Login to Instagram',
+                  onPressed: () => _handleSubmitPressed()),
+          if (_errorText.isNotEmpty) ...[
+            Text(errorText,
+                style: $styles.text.body
+                    .copyWith(color: $styles.colors.secondary)),
+          ],
+          VSpace.xs,
           RichText(
             textAlign: TextAlign.center,
             text: TextSpan(

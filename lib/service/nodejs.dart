@@ -27,10 +27,10 @@ class NodeJs {
     });
     response = await client.get(url, headers: _headers);
 
-    print('RESPONSE : ' + response.body);
+    print('RESPONSE : ${response.body}');
   }
 
-  Future<void> instagramLogin() async {
+  Future<String> instagramLogin() async {
     final LoginResult result = await FacebookAuth.i.login();
 
     if (result.status == LoginStatus.success) {
@@ -40,6 +40,8 @@ class NodeJs {
       print(result.status);
       print(result.message);
     }
+
+    return '${result.status} ${result.status} ${result.message}';
   }
 }
 

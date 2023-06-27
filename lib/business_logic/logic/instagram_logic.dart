@@ -4,7 +4,8 @@ import 'package:da_social_media_viewer/service/nodejs.dart';
 class InstagramLogic {
   NodeJs get nodeJs => GetIt.I.get<NodeJs>();
 
-  Future<void> instagramLogin() async {
-    nodeJs.instagramLogin();
+  Future<String> instagramLogin() async {
+    String result = await nodeJs.instagramLogin();
+    return result;
   }
 }
