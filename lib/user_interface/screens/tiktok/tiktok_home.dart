@@ -19,7 +19,11 @@ class _TikTokHomeState extends State<TikTokHome> with GetItStateMixin {
     super.initState();
 
     tikTokCode = Uri.base.queryParameters['code'];
-    if (tikTokCode != null) getAccessToken();
+    if (tikTokCode != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        getAccessToken();
+      });
+    }
   }
 
   void getAccessToken() async {
@@ -72,7 +76,7 @@ class _TikTokHomeState extends State<TikTokHome> with GetItStateMixin {
                 child: (tikTokCode == null)
                     ? TikTokLogin()
                     : Center(
-                        child: Text(response),
+                        child: Text('$tikTokCode $response'),
                       ),
               ),
             ),
