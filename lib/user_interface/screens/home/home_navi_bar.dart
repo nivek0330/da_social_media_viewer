@@ -3,8 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeNavigationBar extends StatelessWidget {
   final double width;
-  final Function(int) onTap;
-  final int index;
+  final Function(int, BuildContext) onTap;
+  final int Function(BuildContext, int) index;
 
   const HomeNavigationBar(
       {super.key,
@@ -51,21 +51,21 @@ class HomeNavigationBar extends StatelessWidget {
                 text: 'Dashboard',
                 icon: FontAwesomeIcons.house,
                 isMonitor: isMonitor,
-                onSelected: () => onTap(0)),
+                onSelected: () => onTap(0, context)),
             VSpace.lg,
             AnimatedDrawerText(
                 isSelected: index == 1,
                 text: 'Instagram',
                 icon: FontAwesomeIcons.instagram,
                 isMonitor: isMonitor,
-                onSelected: () => onTap(1)),
+                onSelected: () => onTap(1, context)),
             VSpace.lg,
             AnimatedDrawerText(
                 isSelected: index == 2,
                 text: 'TikTok',
                 icon: FontAwesomeIcons.tiktok,
                 isMonitor: isMonitor,
-                onSelected: () => onTap(2)),
+                onSelected: () => onTap(2, context)),
           ],
         ),
       ),

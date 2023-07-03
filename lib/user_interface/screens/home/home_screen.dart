@@ -1,29 +1,45 @@
 import 'package:da_social_media_viewer/business_logic/utils/device_info.dart';
 import 'package:da_social_media_viewer/core_packages.dart';
 import 'package:da_social_media_viewer/user_interface/screens/home/home_navi_bar.dart';
-import 'package:da_social_media_viewer/user_interface/screens/instagram/instagram_home.dart';
-import 'package:da_social_media_viewer/user_interface/screens/tiktok/tiktok_home.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final Widget child;
+
+  const HomeScreen({super.key, required this.child});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Widget> screens = [
-    Center(child: Text('Hello World!')),
-    InstagramHome(),
-    TikTokHome(),
-  ];
-
   int _currentIndex = 0;
 
-  void changeTab(int value) {
-    setState(() {
-      _currentIndex = value;
-    });
+  int _calculateSelectedIndex(BuildContext context, int value) {
+    final String location = GoRouterState.of(context).location;
+    if (location.startsWith('/instagram')) {
+      return 1;
+    }
+    if (location.startsWith('/tiktok')) {
+      return 2;
+    }
+    if (location.startsWith('/')) {
+      return 0;
+    }
+    return 0;
+  }
+
+  void _onNavTapped(int index, BuildContext context) {
+    switch (index) {
+      case 0:
+        appRouter.go('/');
+        break;
+      case 1:
+        appRouter.go('/instagram');
+        break;
+      case 2:
+        appRouter.go('/tiktok');
+        break;
+    }
   }
 
   @override
@@ -52,8 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         HomeNavigationBar(
           width: getNavBarWidth(),
-          index: _currentIndex,
-          onTap: changeTab,
+          index: _calculateSelectedIndex,
+          onTap: _onNavTapped,
         ),
         Expanded(
           child: Column(
@@ -68,12 +84,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       $styles.insets.md,
                     ),
                     child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular($styles.insets.sm),
-                          color: $styles.colors.background,
-                        ),
-                        child: screens.elementAt(_currentIndex)),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular($styles.insets.sm),
+                        color: $styles.colors.background,
+                      ),
+                      child: widget.child,
+                    ),
                   ),
                 ),
               ),

@@ -5,7 +5,6 @@ class NodeJs {
   var client = http.Client();
   final String _tikTokAPI = 'open.tiktokapis.com';
   final String _baseUrl = 'dasocialmediaviewer.ue.r.appspot.com';
-  final Map<String, String> _headers = {};
 
   /// TikTok API calls
   Future<String> getAccessToken(String code) async {
@@ -14,8 +13,6 @@ class NodeJs {
     http.Response response = await client.post(url, body: {
       'code': decodedCode,
     });
-
-    print(response.body);
 
     return response.body;
   }
