@@ -24,7 +24,7 @@ dependencies:
   http: ^1.0.0
   image_picker: ^0.8.7+5
   sized_context: ^1.0.0+1
-  url_launcher: ^6.1.7
+  url_launcher: ^6.1.11
 
 dev_dependencies:
   flutter_test:
