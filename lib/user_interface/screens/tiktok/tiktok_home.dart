@@ -23,7 +23,11 @@ class _TikTokHomeState extends State<TikTokHome> with GetItStateMixin {
   }
 
   void getAccessToken() async {
-    response = await tiktok.getAccessToken(tikTokCode!);
+    String res = await tiktok.getAccessToken(tikTokCode!);
+
+    setState(() {
+      response = res;
+    });
   }
 
   @override
