@@ -12,6 +12,15 @@ class TikTokHome extends StatefulWidget with GetItStatefulWidgetMixin {
 }
 
 class _TikTokHomeState extends State<TikTokHome> with GetItStateMixin {
+  var currentUri = '';
+
+  @override
+  void initState() {
+    super.initState();
+
+    currentUri = Uri.base.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     bool login = watchX((AppModel m) => m.tikTokLogin);
@@ -58,6 +67,7 @@ class _TikTokHomeState extends State<TikTokHome> with GetItStateMixin {
             ),
           ),
         ),
+        Text(currentUri),
       ],
     );
   }

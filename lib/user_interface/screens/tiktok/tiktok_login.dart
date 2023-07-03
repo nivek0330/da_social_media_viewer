@@ -10,10 +10,6 @@ class TikTokLogin extends StatefulWidget {
 }
 
 class _TikTokLoginState extends State<TikTokLogin> {
-  String _errorText = '';
-  String get errorText => _errorText;
-  set errorText(String errorText) => setState(() => _errorText = errorText);
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,15 +19,7 @@ class _TikTokLoginState extends State<TikTokLogin> {
         children: [
           Image.asset('assets/logos/tiktok_logo.png'),
           StyledElevatedButton(
-              text: 'Login to TikTok',
-              onPressed: () async =>
-                  errorText = tiktok.tikTokLogin().toString()),
-          if (_errorText.isNotEmpty) ...[
-            Text(errorText,
-                style: $styles.text.bodySmall
-                    .copyWith(color: $styles.colors.secondary)),
-            VSpace.xs,
-          ],
+              text: 'Login to TikTok', onPressed: () => tiktok.tikTokLogin()),
           RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
