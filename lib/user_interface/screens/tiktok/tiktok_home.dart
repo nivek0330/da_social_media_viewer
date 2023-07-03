@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:da_social_media_viewer/business_logic/logic/app_model.dart';
 import 'package:da_social_media_viewer/core_packages.dart';
 import 'package:da_social_media_viewer/user_interface/screens/tiktok/tiktok_login.dart';
 
@@ -12,18 +11,23 @@ class TikTokHome extends StatefulWidget with GetItStatefulWidgetMixin {
 }
 
 class _TikTokHomeState extends State<TikTokHome> with GetItStateMixin {
-  var currentUri = '';
+  String? tikTokCode = '';
+  String response = '';
 
   @override
   void initState() {
     super.initState();
 
-    currentUri = Uri.base.toString();
+    tikTokCode = Uri.base.queryParameters['code'];
+    if (tikTokCode!.isNotEmpty) getAccessToken();
+  }
+
+  Future<void> getAccessToken() async {
+    response = await tiktok.getAccessToken(tikTokCode!);
   }
 
   @override
   Widget build(BuildContext context) {
-    bool login = watchX((AppModel m) => m.tikTokLogin);
     bool isSmallScreen = context.widthPx < 700;
 
     /// Calculate the height/width of form.
@@ -61,13 +65,15 @@ class _TikTokHomeState extends State<TikTokHome> with GetItStateMixin {
               height: formHeight,
               child: AnimatedSwitcher(
                 duration: $styles.times.fast,
-                child:
-                    !login ? TikTokLogin() : Center(child: Text('Logged in!')),
+                child: (tikTokCode!.isEmpty)
+                    ? TikTokLogin()
+                    : Center(
+                        child: Text(response),
+                      ),
               ),
             ),
           ),
         ),
-        Text(currentUri),
       ],
     );
   }

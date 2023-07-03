@@ -12,7 +12,8 @@ class TikTokLogic {
     String tikTokLoginUrl = 'https://www.tiktok.com/v2/auth/authorize/';
     String key = clientKey;
     String redirect = serverEndPoint;
-    String scope = 'user.info.basic';
+    String scope =
+        'user.info.basic,user.info.profile,user.info.stats,video.list';
     String responseType = 'code';
     String state = generateRandomString(16);
 
@@ -20,6 +21,10 @@ class TikTokLogic {
         '$tikTokLoginUrl?client_key=$key&redirect_uri=$redirect&scope=$scope&response_type=$responseType&state=$state';
 
     return await launchUrlString(loginUrl);
+  }
+
+  Future<String> getAccessToken(String code) async {
+    return await nodeJs.getAccessToken(code);
   }
 }
 
