@@ -20,7 +20,7 @@ class TikTokLogic {
     String loginUrl =
         '$tikTokLoginUrl?client_key=$key&redirect_uri=$redirect&scope=$scope&response_type=$responseType&state=$state';
 
-    return await launchUrlString(loginUrl);
+    return await launchUrlString(loginUrl, webOnlyWindowName: '_self');
   }
 
   Future<String> getAccessToken(String code) async {

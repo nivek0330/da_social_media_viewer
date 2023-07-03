@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:da_social_media_viewer/core_packages.dart';
+import 'package:da_social_media_viewer/user_interface/screens/tiktok/tiktok_data_screen.dart';
 import 'package:da_social_media_viewer/user_interface/screens/tiktok/tiktok_login.dart';
 
 class TikTokHome extends StatefulWidget with GetItStatefulWidgetMixin {
@@ -70,10 +71,7 @@ class _TikTokHomeState extends State<TikTokHome> with GetItStateMixin {
                 duration: $styles.times.fast,
                 child: (tikTokCode == null)
                     ? TikTokLogin()
-                    : Center(
-                        child: StyledElevatedButton(
-                            text: response, onPressed: () => getAccessToken()),
-                      ),
+                    : TikTokDataScreen(tikTokCode: tikTokCode!),
               ),
             ),
           ),
