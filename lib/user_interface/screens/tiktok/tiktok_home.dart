@@ -19,10 +19,10 @@ class _TikTokHomeState extends State<TikTokHome> with GetItStateMixin {
     super.initState();
 
     tikTokCode = Uri.base.queryParameters['code'];
-    if (tikTokCode!.isNotEmpty) getAccessToken();
+    if (tikTokCode != null) getAccessToken();
   }
 
-  Future<void> getAccessToken() async {
+  void getAccessToken() async {
     response = await tiktok.getAccessToken(tikTokCode!);
   }
 
@@ -65,7 +65,7 @@ class _TikTokHomeState extends State<TikTokHome> with GetItStateMixin {
               height: formHeight,
               child: AnimatedSwitcher(
                 duration: $styles.times.fast,
-                child: (tikTokCode!.isEmpty)
+                child: (tikTokCode == null)
                     ? TikTokLogin()
                     : Center(
                         child: Text(response),
