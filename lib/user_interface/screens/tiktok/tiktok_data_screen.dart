@@ -14,7 +14,14 @@ class _TikTokDataScreenState extends State<TikTokDataScreen> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: $styles.insets.lg),
-      child: Column(),
+      child: Column(
+        children: [
+          StyledElevatedButton(
+              text: 'Get Access Token',
+              onPressed: () async =>
+                  await tiktok.getAccessToken(widget.tikTokCode)),
+        ],
+      ),
     );
   }
 }
