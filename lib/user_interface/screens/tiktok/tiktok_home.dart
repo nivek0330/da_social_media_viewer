@@ -57,7 +57,7 @@ class _TikTokHomeState extends State<TikTokHome> with GetItStateMixin {
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

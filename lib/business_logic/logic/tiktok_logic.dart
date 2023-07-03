@@ -3,12 +3,12 @@ import 'dart:math';
 import 'package:da_social_media_viewer/constants.dart';
 import 'package:da_social_media_viewer/core_packages.dart';
 import 'package:da_social_media_viewer/service/nodejs.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class TikTokLogic {
   NodeJs get nodeJs => GetIt.I.get<NodeJs>();
 
-  Future<void> tikTokLogin() async {
+  Future<bool> tikTokLogin() async {
     String tikTokLoginUrl = 'https://www.tiktok.com/v2/auth/authorize/';
     String key = clientKey;
     String redirect = serverEndPoint;
@@ -19,9 +19,7 @@ class TikTokLogic {
     String loginUrl =
         '$tikTokLoginUrl?client_key=$key&redirect_uri=$redirect&scope=$scope&response_type=$responseType&state=$state';
 
-    Uri loginUri = Uri.parse(loginUrl);
-
-    await launchUrl(loginUri);
+    return await launchUrlString(loginUrl);
   }
 }
 

@@ -2,8 +2,17 @@ import 'package:da_social_media_viewer/core_packages.dart';
 import 'package:flutter/gestures.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class TikTokLogin extends StatelessWidget {
+class TikTokLogin extends StatefulWidget {
   const TikTokLogin({super.key});
+
+  @override
+  State<TikTokLogin> createState() => _TikTokLoginState();
+}
+
+class _TikTokLoginState extends State<TikTokLogin> {
+  String _errorText = '';
+  String get errorText => _errorText;
+  set errorText(String errorText) => setState(() => _errorText = errorText);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +23,15 @@ class TikTokLogin extends StatelessWidget {
         children: [
           Image.asset('assets/logos/tiktok_logo.png'),
           StyledElevatedButton(
-              text: 'Login to TikTok', onPressed: () => tiktok.tikTokLogin()),
+              text: 'Login to TikTok',
+              onPressed: () async =>
+                  errorText = tiktok.tikTokLogin().toString()),
+          if (_errorText.isNotEmpty) ...[
+            Text(errorText,
+                style: $styles.text.bodySmall
+                    .copyWith(color: $styles.colors.secondary)),
+            VSpace.xs,
+          ],
           RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
