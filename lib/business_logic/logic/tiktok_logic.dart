@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 class TikTokLogic {
   NodeJs get nodeJs => GetIt.I.get<NodeJs>();
 
-  Future<bool> tikTokLogin() async {
+  Future<void> tikTokLogin() async {
     String tikTokLoginUrl = 'https://www.tiktok.com/v2/auth/authorize/';
     String key = clientKey;
     String redirect = serverEndPoint;
@@ -20,11 +20,13 @@ class TikTokLogic {
     String loginUrl =
         '$tikTokLoginUrl?client_key=$key&redirect_uri=$redirect&scope=$scope&response_type=$responseType&state=$state';
 
-    return await launchUrlString(loginUrl, webOnlyWindowName: '_self');
+    await launchUrlString(loginUrl, webOnlyWindowName: '_self');
   }
 
   Future<String> getAccessToken(String code) async {
-    return await nodeJs.getAccessToken(code);
+    String accessToken = await nodeJs.getAccessToken(code);
+
+    return accessToken;
   }
 }
 

@@ -4,13 +4,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class HomeNavigationBar extends StatelessWidget {
   final double width;
   final Function(int, BuildContext) onTap;
-  final int Function(BuildContext, int) index;
+  final int Function(BuildContext) index;
+  final int currentIndex;
 
   const HomeNavigationBar(
       {super.key,
       required this.width,
       required this.onTap,
-      required this.index});
+      required this.index,
+      required this.currentIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -47,21 +49,21 @@ class HomeNavigationBar extends StatelessWidget {
             ),
             VSpace.xl,
             AnimatedDrawerText(
-                isSelected: index == 0,
+                isSelected: currentIndex == 0,
                 text: 'Dashboard',
                 icon: FontAwesomeIcons.house,
                 isMonitor: isMonitor,
                 onSelected: () => onTap(0, context)),
             VSpace.lg,
             AnimatedDrawerText(
-                isSelected: index == 1,
+                isSelected: currentIndex == 1,
                 text: 'Instagram',
                 icon: FontAwesomeIcons.instagram,
                 isMonitor: isMonitor,
                 onSelected: () => onTap(1, context)),
             VSpace.lg,
             AnimatedDrawerText(
-                isSelected: index == 2,
+                isSelected: currentIndex == 2,
                 text: 'TikTok',
                 icon: FontAwesomeIcons.tiktok,
                 isMonitor: isMonitor,

@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 
 class NodeJs {
   var client = http.Client();
-  final String _tikTokAPI = 'open.tiktokapis.com';
   final String _baseUrl = 'dasocialmediaviewer.ue.r.appspot.com';
 
   /// TikTok API calls

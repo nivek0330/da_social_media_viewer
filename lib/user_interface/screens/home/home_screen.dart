@@ -14,21 +14,26 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
-  int _calculateSelectedIndex(BuildContext context, int value) {
+  int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).location;
     if (location.startsWith('/instagram')) {
+      _currentIndex = 1;
       return 1;
     }
     if (location.startsWith('/tiktok')) {
+      _currentIndex = 2;
       return 2;
     }
     if (location.startsWith('/')) {
+      _currentIndex = 0;
       return 0;
     }
     return 0;
   }
 
   void _onNavTapped(int index, BuildContext context) {
+    _currentIndex = index;
+
     switch (index) {
       case 0:
         appRouter.go('/');
@@ -70,6 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
           width: getNavBarWidth(),
           index: _calculateSelectedIndex,
           onTap: _onNavTapped,
+          currentIndex: _currentIndex,
         ),
         Expanded(
           child: Column(

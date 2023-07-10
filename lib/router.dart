@@ -14,7 +14,19 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/',
-              builder: (context, state) => Center(child: Text('Hello World!')),
+              pageBuilder: (context, state) => CustomTransitionPage(
+                  child: Center(child: Text('Hello World!')),
+                  transitionDuration: $styles.times.fast,
+                  transitionsBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation,
+                      Widget child) {
+                    return FadeTransition(
+                      opacity:
+                          CurveTween(curve: Curves.easeIn).animate(animation),
+                      child: child,
+                    );
+                  }),
             ),
             GoRoute(
               path: '/instagram',

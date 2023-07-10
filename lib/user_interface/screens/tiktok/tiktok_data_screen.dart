@@ -1,9 +1,9 @@
 import 'package:da_social_media_viewer/core_packages.dart';
 
 class TikTokDataScreen extends StatefulWidget {
-  final String tikTokCode;
+  final String accessToken;
 
-  const TikTokDataScreen({super.key, required this.tikTokCode});
+  const TikTokDataScreen({super.key, required this.accessToken});
 
   @override
   State<TikTokDataScreen> createState() => _TikTokDataScreenState();
@@ -13,14 +13,9 @@ class _TikTokDataScreenState extends State<TikTokDataScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: $styles.insets.lg),
-      child: Column(
-        children: [
-          StyledElevatedButton(
-              text: 'Get Access Token',
-              onPressed: () async =>
-                  await tiktok.getAccessToken(widget.tikTokCode)),
-        ],
+      padding: EdgeInsets.all($styles.insets.sm),
+      child: Center(
+        child: Text(widget.accessToken),
       ),
     );
   }
