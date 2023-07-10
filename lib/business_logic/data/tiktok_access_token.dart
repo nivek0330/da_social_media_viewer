@@ -6,13 +6,10 @@ class TikTokAccessToken {
   TikTokAccessToken(this.accessToken, this.openId, this.refreshToken,
       this.expires, this.refreshExpires);
 
-  factory TikTokAccessToken.fromJSON(Map<String, dynamic> json) {
-    return TikTokAccessToken(
-      json['access_token'] as String,
-      json['open_id'] as String,
-      json['refresh_token'] as String,
-      json['expires_in'] as int,
-      json['refresh_expires_in'] as int,
-    );
-  }
+  TikTokAccessToken.fromJSON(Map<String, dynamic> json)
+      : accessToken = json['access_token'] ?? '',
+        openId = json['open_id'] ?? '',
+        refreshToken = json['refresh_token'] ?? '',
+        expires = json['expires_in'] ?? 0,
+        refreshExpires = json['refresh_expires_in'] ?? 0;
 }

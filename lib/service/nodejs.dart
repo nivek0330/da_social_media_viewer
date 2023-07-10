@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:http/http.dart' as http;
 
@@ -6,14 +8,17 @@ class NodeJs {
   final String _baseUrl = 'dasocialmediaviewer.ue.r.appspot.com';
 
   /// TikTok API calls
-  Future<String> getAccessToken(String code) async {
+  Future<Map<String, dynamic>?> getAccessToken(String code) async {
+    Map<String, dynamic>? data;
     final decodedCode = Uri.decodeComponent(code);
     Uri url = Uri.https(_baseUrl, '/users/tiktok-access-token');
     http.Response response = await client.post(url, body: {
       'code': decodedCode,
     });
 
-    return response.body;
+    data = jsonDecode(response.body);
+
+    return data;
   }
 
   /// Instagram API calls

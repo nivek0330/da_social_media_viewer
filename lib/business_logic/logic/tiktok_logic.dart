@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:da_social_media_viewer/business_logic/data/tiktok_access_token.dart';
 import 'package:da_social_media_viewer/constants.dart';
 import 'package:da_social_media_viewer/core_packages.dart';
 import 'package:da_social_media_viewer/service/nodejs.dart';
@@ -24,9 +25,10 @@ class TikTokLogic {
   }
 
   Future<String> getAccessToken(String code) async {
-    String accessToken = await nodeJs.getAccessToken(code);
+    Map<String, dynamic>? accessToken = await nodeJs.getAccessToken(code);
 
-    return accessToken;
+    TikTokAccessToken token = TikTokAccessToken.fromJSON(accessToken!);
+    return token.toString();
   }
 }
 
