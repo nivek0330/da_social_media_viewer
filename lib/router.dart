@@ -32,11 +32,11 @@ final appRouter = GoRouter(
               path: '/instagram',
               builder: (context, state) => InstagramHome(),
             ),
+            GoRoute(
+              path: '/tiktok',
+              builder: (context, state) => TikTokHome(),
+            ),
           ],
-        ),
-        GoRoute(
-          path: '/tiktok',
-          builder: (context, state) => TikTokHome(),
         ),
       ],
     ),
